@@ -7,6 +7,13 @@
     <title>{{ isset($title) ? $title.' - '.config('app.name') : config('app.name') }}</title>
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+    {{-- Cropper.js --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.css" />
+
+    <script src="https://cdn.tiny.cloud/1/buunbt0z6l1vaw62xyppgzx1on0ecg1swruu4krmvjm6zjno/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+
 </head>
 <body class="min-h-screen font-sans antialiased bg-base-200/50 dark:bg-base-200">
 
@@ -35,18 +42,20 @@
 
                 {{-- User --}}
                 @if($user = auth()->user())
-                    <x-menu-separator />
+                <x-menu-separator />
 
-                    <x-list-item :item="$user" value="name" sub-value="email" no-separator no-hover class="-mx-2 !-my-2 rounded">
-                        <x-slot:actions>
-                            <x-button icon="o-power" class="btn-circle btn-ghost btn-xs" tooltip-left="logoff" no-wire-navigate link="/logout" />
-                        </x-slot:actions>
-                    </x-list-item>
+                <x-list-item :item="$user" value="name" sub-value="email" no-separator no-hover class="-mx-2 !-my-2 rounded">
+                    <x-slot:actions>
+                        <x-button icon="o-power" class="btn-circle btn-ghost btn-xs" tooltip-left="logoff" no-wire-navigate link="/logout" />
+                    </x-slot:actions>
+                </x-list-item>
 
-                    <x-menu-separator />
+                <x-menu-separator />
                 @endif
 
-                <x-menu-item title="Hello" icon="o-sparkles" link="/" />
+                <x-menu-item title="Home" icon="o-sparkles" link="/" />
+                <x-menu-item title="Users" icon="o-users" link="/users" />
+
                 <x-menu-sub title="Settings" icon="o-cog-6-tooth">
                     <x-menu-item title="Wifi" icon="o-wifi" link="####" />
                     <x-menu-item title="Archives" icon="o-archive-box" link="####" />
@@ -60,7 +69,7 @@
         </x-slot:content>
     </x-main>
 
-    {{--  TOAST area --}}
+    {{-- TOAST area --}}
     <x-toast />
 </body>
 </html>
