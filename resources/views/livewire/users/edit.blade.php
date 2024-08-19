@@ -61,6 +61,8 @@ new class extends Component {
 		// Update
 		$this->user->update($data);
 
+		$this->country_id ?? $this->user->country->update($this->country_id);
+
 		$this->user->languages()->sync($this->my_languages);
 
 
@@ -94,9 +96,11 @@ new class extends Component {
             </div>
         </div>
 
+        <hr class="my-5" />
+
         <div class="lg:grid grid-cols-5">
             <div class="col-span-2">
-                <x-header title="Basic" subtitle="Basic info from user" size="text-2xl" />
+                <x-header title="Details" subtitle="More about the user" size="text-2xl" />
             </div>
             <div class="col-span-3 grid gap-3">
                 <x-select label="Country" wire:model="country_id" :options="$countries" placeholder="---" />

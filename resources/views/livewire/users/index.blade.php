@@ -76,6 +76,7 @@ new class extends Component {
 			$this->resetPage();
 		}
 	}
+
 }; ?>
 
 <div>
@@ -86,6 +87,7 @@ new class extends Component {
         </x-slot:middle>
         <x-slot:actions>
             <x-button label="Filters" @click="$wire.drawer = true" responsive icon="o-funnel" badge="9" />
+            <x-button label="Create" link="{{ route('user.create') }}" responsive icon="o-plus" class="btn-accent" />
         </x-slot:actions>
     </x-header>
 
